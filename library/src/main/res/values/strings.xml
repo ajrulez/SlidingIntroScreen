@@ -1,0 +1,4 @@
+<resources>
+	<string name="intro_activity_skipButtonText">SKIP</string>
+	<string name="intro_activity_doneButtonText">DONE</string>
+</resources>
