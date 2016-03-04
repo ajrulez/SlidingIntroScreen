@@ -1,5 +1,5 @@
 # SlidingIntroScreen
-This library simplifies the creation of introduction screens in Android apps. To give you an example of the simplicity of this library, [this activity](misc/example.gif) was created by overriding only two methods in one class. The code for the example is [here](testapp/src/main/java/com/matthewtamlin/testapp/IntroTest.java).
+This library simplifies the creation of introduction screens in Android apps. To give you an example of how easy it is to create an intro screen, [this activity](misc/example.gif) was created by subclassing one class and overriding two methods (see code [here](testapp/src/main/java/com/matthewtamlin/testapp/IntroTest.java)).
 
 
 ## Installation
@@ -17,12 +17,14 @@ To customise the pages of your intro screen, create subclasses of `Page`. A basi
 ## SelectionIndicator
 The [SelectionIndicator](library/src/main/java/com/matthewtamlin/sliding_intro_screen_library/SelectionIndicator.java) element can be used by itself if you wish to add a dot indicator to your app. To add a SelectionIndicator, add the following to your layout:
 
-```<com.matthewtamlin.sliding_intro_screen_library.SelectionIndicator
+```java
+<com.matthewtamlin.sliding_intro_screen_library.SelectionIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:numberOfItems=YOUR_INT_HERE
-            app:activeItemIndex=YOUR_INT_HERE/>```
-            
+            app:activeItemIndex=YOUR_INT_HERE/>
+```
+
 The above code replicates the functionality of the dots on the Google Launcher homescreen, however if you want to further customise it then the following attributes can be added:
 
 - app:inactiveDotDiameter and app:activeDotDiameter to set the diameters of the dots
@@ -30,7 +32,6 @@ The above code replicates the functionality of the dots on the Google Launcher h
 - app:dotTransitionDuration to set the time for animating the change from small to big (and back) 
 
 Additionally, the view can be created programatically by `SelectionIndicator si = new SelectionIndicator(context);`. Methods exist to modify the properties, similar to the aforementioned attributes. To update the page, just call method `si.setActiveItem(int, true)` from inside `ViewPager.OnPageChangeListener.onPageSelected(int)`.
-
 
 
 ## Compatibility
