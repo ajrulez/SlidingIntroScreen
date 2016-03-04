@@ -38,7 +38,7 @@ import com.matthewtamlin.android_utilities_library.helpers.SemiFullScreenHelper;
 
 /**
  * Displays an introduction activity to the user. The activity features multiple screens hosted in
- * a {@link ViewPager}, and navigation controls to control the users flow through the activity. To
+ * a {@link ViewPager}, and navigation controls to control the user's flow through the activity. To
  * use this class, subclass it and override {@link #generatePages()} and {@link
  * #progressToNextActivity()}. It is recommended that the manifest item for this activity specifies
  * {@code android:noHistory="true"} to prevent the user from navigating back to this activity once
