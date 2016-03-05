@@ -16,8 +16,7 @@ public class IntroTest extends IntroActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		transformer = new ParallaxTransformer();
-		viewPager.setPageTransformer(false, transformer);
+		setTransformer(new ParallaxTransformer());
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public class IntroTest extends IntroActivity {
 			newPage.setDesiredBackgroundColor(colors[pageNumber]);
 			newPage.setFrontImage(frontDots);
 			newPage.setBackImage(backDots);
-			pages.add(pageNumber, newPage);
+			addPage(pageNumber, newPage);
 		}
 	}
 

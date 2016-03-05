@@ -25,13 +25,14 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks;
-import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks.OnItemAddedListener;
-import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks.OnItemRemovedListener;
-import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks.OnListClearedListener;
+import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks
+		.OnItemAddedListener;
+import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks
+		.OnItemRemovedListener;
+import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks
+		.OnListClearedListener;
 import com.matthewtamlin.android_utilities_library.helpers.ColorHelper;
 import com.matthewtamlin.android_utilities_library.helpers.SemiFullScreenHelper;
-
-
 
 /**
  * Displays an introduction activity to the user. The activity features multiple screens hosted in
@@ -49,47 +50,47 @@ public abstract class IntroActivity extends AppCompatActivity
 	/**
 	 * The pages to display in {@code viewPager}.
 	 */
-	protected final ArrayListWithCallbacks<Page> pages = new ArrayListWithCallbacks<>();
+	private final ArrayListWithCallbacks<Page> pages = new ArrayListWithCallbacks<>();
 
 	/**
 	 * Adapts the elements of {@code pages} to {@code viewPager}.
 	 */
-	protected final PageAdapter adapter = new PageAdapter(getSupportFragmentManager(), pages);
+	private final PageAdapter adapter = new PageAdapter(getSupportFragmentManager(), pages);
 
 	/**
 	 * Animates the elements of {@code pages} when {@code viewPager} scrolls.
 	 */
-	protected ViewPager.PageTransformer transformer;
+	private ViewPager.PageTransformer transformer;
 
 	/**
 	 * The root view of this activity.
 	 */
-	protected RelativeLayout rootView;
+	private RelativeLayout rootView;
 
 	/**
 	 * Displays the elements of {@code pages} to the user.
 	 */
-	protected ViewPager viewPager;
+	private ViewPager viewPager;
 
 	/**
 	 * Button for advancing to the next page.
 	 */
-	protected Button nextButton;
+	private Button nextButton;
 
 	/**
 	 * Button for advancing directly to the last page.
 	 */
-	protected Button skipButton;
+	private Button skipButton;
 
 	/**
 	 * Button for finishing this activity.
 	 */
-	protected Button doneButton;
+	private Button doneButton;
 
 	/**
 	 * Displays a series of dots to the user to indicate their progress through the intro screen.
 	 */
-	protected SelectionIndicator pageIndicator;
+	private SelectionIndicator pageIndicator;
 
 	/**
 	 * Constant used to save and restore the current page on configuration changes.
@@ -172,6 +173,52 @@ public abstract class IntroActivity extends AppCompatActivity
 			doneButton.setVisibility(View.INVISIBLE);
 			doneButton.setEnabled(false);
 		}
+	}
+
+	/**
+	 * Adds a {@code Page} to the end of this introduction screen.
+	 *
+	 * @param page
+	 * 		the {@code Page} to add
+	 */
+	protected void addPage(Page page) {
+		pages.add(page);
+	}
+
+	/**
+	 * Adds a {@code Page} to this introduction screen.
+	 *
+	 * @param index
+	 * 		where to add the supplied page, relative to the pre-existing pages
+	 * @param page
+	 * 		the {@code Page} to add
+	 */
+	protected void addPage(int index, Page page) {
+		pages.add(index, page);
+	}
+
+	/**
+	 * Removes the specified {@code Page} from this introduction screen.
+	 *
+	 * @param page
+	 * 		the {@code Page} to remove
+	 */
+	protected void removePage(Page page) {
+		pages.remove(page);
+	}
+
+	/**
+	 * Removes the page at the specified index.
+	 *
+	 * @param index the index of the {@code Page} to remove
+	 */
+	protected void removePage(int index) {
+		pages.remove(index);
+	}
+
+	protected void setTransformer(ViewPager.PageTransformer transformer) {
+		this.transformer = transformer;
+		viewPager.setPageTransformer(false, transformer);
 	}
 
 	/**
