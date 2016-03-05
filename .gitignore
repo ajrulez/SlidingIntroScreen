@@ -31,3 +31,7 @@
 /build
 /captures
 
+.idea/compiler.xml
+.idea/modules.xml
+.idea/encodings.xml
+.idea/runConfigurations.xml
