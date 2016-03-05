@@ -3,7 +3,7 @@ This library simplifies the creation of introduction screens in Android apps. To
 
 
 ## Installation
-To use this library, add `compile 'com.matthew-tamlin:sliding-intro-screen:1.0.0` to your gradle build file. Check the [maven repo](https://bintray.com/matthewtamlin/maven/SlidingIntroScreen/view) to make sure this is the latest version.
+To use this library, add `compile 'com.matthew-tamlin:sliding-intro-screen:1.1.0` to your gradle build file. Check the [maven repo](https://bintray.com/matthewtamlin/maven/SlidingIntroScreen/view) to make sure this is the latest version.
 
 
 ## Usage
