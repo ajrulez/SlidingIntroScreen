@@ -25,12 +25,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks;
-import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks
-		.OnItemAddedListener;
-import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks
-		.OnItemRemovedListener;
-import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks
-		.OnListClearedListener;
+import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks.OnItemAddedListener;
+import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks.OnItemRemovedListener;
+import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCallbacks.OnListClearedListener;
 import com.matthewtamlin.android_utilities_library.helpers.ColorHelper;
 import com.matthewtamlin.android_utilities_library.helpers.SemiFullScreenHelper;
 
@@ -138,8 +135,6 @@ public abstract class IntroActivity extends AppCompatActivity
 		nextButton.setOnClickListener(this);
 		skipButton.setOnClickListener(this);
 		doneButton.setOnClickListener(this);
-
-		pageIndicator.redrawDots();
 	}
 
 	/**
