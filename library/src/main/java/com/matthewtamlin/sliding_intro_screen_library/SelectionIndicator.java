@@ -307,14 +307,7 @@ public class SelectionIndicator extends RelativeLayout {
 		}
 
 		this.activeItemIndex = activeItemIndex;
-
-		for (int i = 0; i < dots.size(); i++) {
-			if (i == activeItemIndex) {
-				dots.get(i).setActive(animate);
-			} else {
-				dots.get(i).setInactive(animate);
-			}
-		}
+		drawDots();
 	}
 
 	/**
