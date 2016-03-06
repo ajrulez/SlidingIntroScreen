@@ -16,8 +16,6 @@
 
 package com.matthewtamlin.sliding_intro_screen_library;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -35,8 +33,8 @@ import com.matthewtamlin.android_utilities_library.collections.ArrayListWithCall
 		.OnListClearedListener;
 import com.matthewtamlin.android_utilities_library.helpers.ColorHelper;
 import com.matthewtamlin.android_utilities_library.helpers.SemiFullScreenHelper;
-
-import java.util.HashMap;
+import com.matthewtamlin.sliding_intro_screen_library.IntroButton.ButtonAction;
+import com.matthewtamlin.sliding_intro_screen_library.IntroButton.ButtonMode;
 
 /**
  * Displays an introduction activity to the user. The activity features multiple screens hosted in
@@ -60,24 +58,24 @@ public abstract class IntroActivity extends AppCompatActivity
 	private static final int DEFAULT_CURRENT_PAGE_INDEX = 0;
 
 	/**
-	 * Constant used to save and restore the left button mode on configuration changes.
+	 * The default left button action, to be used when there is no state to restore.
 	 */
-	private static final String STATE_KEY_LEFT_BUTTON_MODE = "left button mode";
+	private static final ButtonAction DEFAULT_LEFT_BUTTON_ACTION = ButtonAction.SKIP;
 
 	/**
-	 * Constant used to save and restore the right button mode on configuration changes.
+	 * The default right button action, to be used when there is no state to restore.
 	 */
-	private static final String STATE_KEY_RIGHT_BUTTON_MODE = "right button mode";
+	private static final ButtonAction DEFAULT_RIGHT_BUTTON_ACTION = ButtonAction.NEXT;
 
 	/**
 	 * The default left button mode, to be used when there is no state to restore.
 	 */
-	private static final ButtonMode DEFAULT_LEFT_BUTTON_MODE = ButtonMode.SKIP;
+	private static final ButtonMode DEFAULT_LEFT_BUTTON_MODE = ButtonMode.TEXT_ONLY;
 
 	/**
 	 * The default right button mode, to be used when there is no state to restore.
 	 */
-	private static final ButtonMode DEFAULT_RIGHT_BUTTON_MODE = ButtonMode.NEXT;
+	private static final ButtonMode DEFAULT_RIGHT_BUTTON_MODE = ButtonMode.ICON_ONLY;
 
 	/**
 	 * The root view of this activity.
@@ -128,37 +126,13 @@ public abstract class IntroActivity extends AppCompatActivity
 	private ViewPager.PageTransformer transformer;
 
 	/**
-	 * The current mode of {@code leftButton}.
-	 */
-	private ButtonMode leftButtonMode;
-
-	/**
-	 * The current mode of {@code rightButton}.
-	 */
-	private ButtonMode rightButtonMode;
-
-	/**
-	 * The fixed mode of {@code doneButton}
-	 */
-	private final ButtonMode doneButtonMode = ButtonMode.DONE;
-
-	/**
-	 * The text to be displayed in each button.
-	 */
-	private HashMap<ButtonMode, String> buttonText = new HashMap<>();
-
-	/**
-	 * The image to be displayed in each button.
-	 */
-	private HashMap<ButtonMode, Bitmap> buttonImages = new HashMap<>();
-
-	/**
 	 * {@inheritDoc}When overriding this method, the superclass implementation should be the first
 	 * method call.
 	 *
 	 * @param savedInstanceState
 	 * 		if the activity is being re-initialized after previously being shut down then this
-	 * 		Bundle contains the data it most recently supplied in onSaveInstanceState, otherwise null
+	 * 		Bundle contains the data it most recently supplied in onSaveInstanceState, otherwise
+	 * 		null
 	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -170,8 +144,6 @@ public abstract class IntroActivity extends AppCompatActivity
 		bindViewsToVariables();
 		registerListeners();
 		initialisePageDisplay(savedInstanceState);
-		initialiseButtonResources();
-		initialiseButtons(savedInstanceState);
 	}
 
 	private void bindViewsToVariables() {
@@ -195,25 +167,10 @@ public abstract class IntroActivity extends AppCompatActivity
 		doneButton.setOnClickListener(this);
 	}
 
-	private void initialiseButtonResources() {
-		buttonText.put(ButtonMode.BACK, getString(R.string.introActivity_defaultBackButtonText));
-		buttonText.put(ButtonMode.NEXT, getString(R.string.introActivity_defaultNextButtonText));
-		buttonText.put(ButtonMode.SKIP, getString(R.string.introActivity_defaultSkipButtonText));
-		buttonText.put(ButtonMode.DISABLED, null);
-		buttonText.put(ButtonMode.DONE, getString(R.string.introActivity_defaultFinishButtonText));
-
-		buttonImages.put(ButtonMode.BACK, BitmapFactory.decodeResource(getResources(),
-				R.drawable.ic_action_back));
-		buttonImages.put(ButtonMode.NEXT, BitmapFactory.decodeResource(getResources(),
-				R.drawable.ic_action_next));
-		buttonImages.put(ButtonMode.SKIP, BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_skip));
-		buttonImages.put(ButtonMode.DISABLED, null);
-		buttonImages.put(ButtonMode.DONE, BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_done));
-	}
-
 	private void initialisePageDisplay(Bundle savedInstanceState) {
 		int index = (savedInstanceState != null) ?
-				savedInstanceState.getInt(STATE_KEY_CURRENT_PAGE_INDEX) : 0;
+				savedInstanceState.getInt(STATE_KEY_CURRENT_PAGE_INDEX) :
+				DEFAULT_CURRENT_PAGE_INDEX;
 
 		rootView.setBackgroundColor(pages.get(index).getDesiredBackgroundColor());
 		pageIndicator.setNumberOfItems(pages.size());
@@ -221,16 +178,6 @@ public abstract class IntroActivity extends AppCompatActivity
 		viewPager.setAdapter(adapter);
 		viewPager.addOnPageChangeListener(this);
 		viewPager.setCurrentItem(index);
-	}
-
-	private void initialiseButtons(Bundle savedInstanceState) {
-		leftButtonMode = (savedInstanceState != null) ?
-				ButtonMode.values()[savedInstanceState.getInt(STATE_KEY_LEFT_BUTTON_MODE)] :
-				DEFAULT_LEFT_BUTTON_MODE;
-		rightButtonMode = (savedInstanceState != null) ?
-				ButtonMode.values()[savedInstanceState.getInt(STATE_KEY_RIGHT_BUTTON_MODE)] :
-				DEFAULT_RIGHT_BUTTON_MODE;
-		updateButtonAppearance();
 	}
 
 	/**
@@ -404,15 +351,5 @@ public abstract class IntroActivity extends AppCompatActivity
 	protected void onSaveInstanceState(final Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt(STATE_KEY_CURRENT_PAGE_INDEX, viewPager.getCurrentItem());
-		outState.putInt(STATE_KEY_LEFT_BUTTON_MODE, leftButtonMode.ordinal());
-		outState.putInt(STATE_KEY_RIGHT_BUTTON_MODE, rightButtonMode.ordinal());
-	}
-
-	public enum ButtonMode {
-		BACK,
-		NEXT,
-		SKIP,
-		DONE,
-		DISABLED
 	}
 }
