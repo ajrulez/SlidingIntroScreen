@@ -183,7 +183,7 @@ public class SelectionIndicator extends RelativeLayout {
 	 * @param attrs
 	 * 		the attributes from the xml declaration of this instance
 	 * @param defStyleAttr
-	 * 		this parameter does nothing
+	 * 		this parameter is unused
 	 */
 	public SelectionIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
