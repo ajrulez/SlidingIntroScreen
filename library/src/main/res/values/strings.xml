@@ -1,4 +1,6 @@
 <resources>
-	<string name="intro_activity_skipButtonText">SKIP</string>
-	<string name="intro_activity_doneButtonText">DONE</string>
+	<string name="introActivity_defaultBackButtonText">BACK</string>
+	<string name="introActivity_defaultNextButtonText">FORWARD</string>
+	<string name="introActivity_defaultSkipButtonText">SKIP</string>
+	<string name="introActivity_defaultFinishButtonText">DONE</string>
 </resources>
