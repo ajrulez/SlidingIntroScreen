@@ -41,7 +41,7 @@ public abstract class Page extends Fragment {
 	 * @param color
 	 * 		the desired background color
 	 */
-	public void setDesiredBackgroundColor(int color) {
+	public void setDesiredBackgroundColor(final int color) {
 		this.desiredBackgroundColour = color;
 	}
 

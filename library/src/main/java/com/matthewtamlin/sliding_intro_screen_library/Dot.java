@@ -142,7 +142,7 @@ public class Dot extends RelativeLayout {
 	 * @param context
 	 * 		the context in which this {@code Dot} is operating
 	 */
-	public Dot(Context context) {
+	public Dot(final Context context) {
 		super(context);
 		init(null);
 	}
@@ -162,7 +162,7 @@ public class Dot extends RelativeLayout {
 	 * @param attrs
 	 * 		the attributes from the xml declaration of this instance
 	 */
-	public Dot(Context context, AttributeSet attrs) {
+	public Dot(final Context context, final AttributeSet attrs) {
 		super(context, attrs);
 		init(attrs);
 	}
@@ -184,7 +184,7 @@ public class Dot extends RelativeLayout {
 	 * @param defStyleAttr
 	 * 		this parameter does nothing
 	 */
-	public Dot(Context context, AttributeSet attrs, int defStyleAttr) {
+	public Dot(final Context context, final AttributeSet attrs, final int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		init(attrs);
 		reflectParametersInView();
@@ -267,7 +267,7 @@ public class Dot extends RelativeLayout {
 	 * @throws IllegalArgumentException
 	 * 		if {@code inactiveDiameterPx} is less than 0
 	 */
-	public Dot setInactiveDiameter(int inactiveDiameterPx) {
+	public Dot setInactiveDiameter(final int inactiveDiameterPx) {
 		if (inactiveDiameterPx < 0) {
 			throw new IllegalArgumentException("inactiveDiameterPx cannot be less than 0");
 		}
@@ -286,7 +286,7 @@ public class Dot extends RelativeLayout {
 	 * @throws IllegalArgumentException
 	 * 		if {@code activeDiameterPx} is less than 0
 	 */
-	public Dot setActiveDiameter(int activeDiameterPx) {
+	public Dot setActiveDiameter(final int activeDiameterPx) {
 		if (activeDiameterPx < 0) {
 			throw new IllegalArgumentException("activeDiameterPx cannot be less than 0");
 		}
@@ -303,7 +303,7 @@ public class Dot extends RelativeLayout {
 	 * 		the ARGB hex code of this {@code Dot} when inactive
 	 * @return this {@code Dot}
 	 */
-	public Dot setInactiveColor(int inactiveColor) {
+	public Dot setInactiveColor(final int inactiveColor) {
 		this.inactiveColor = inactiveColor;
 		reflectParametersInView();
 		return this;
@@ -316,7 +316,7 @@ public class Dot extends RelativeLayout {
 	 * 		the ARGB hex code of this {@code Dot} when active
 	 * @return this {@code Dot}
 	 */
-	public Dot setActiveColor(int activeColor) {
+	public Dot setActiveColor(final int activeColor) {
 		this.activeColor = activeColor;
 		reflectParametersInView();
 		return this;
@@ -331,7 +331,7 @@ public class Dot extends RelativeLayout {
 	 * @throws IllegalArgumentException
 	 * 		if {@code transitionDurationMs} is less than 0
 	 */
-	public Dot setTransitionDuration(int transitionDurationMs) {
+	public Dot setTransitionDuration(final int transitionDurationMs) {
 		if (transitionDurationMs < 0) {
 			throw new IllegalArgumentException("transitionDurationMs cannot be less than 0");
 		}
@@ -346,7 +346,7 @@ public class Dot extends RelativeLayout {
 	 * @param animate
 	 * 		whether or not the transition should be animated
 	 */
-	public void toggleState(boolean animate) {
+	public void toggleState(final boolean animate) {
 		if (state == State.INACTIVE) {
 			setActive(animate);
 		} else if (state == State.ACTIVE) {
@@ -360,7 +360,7 @@ public class Dot extends RelativeLayout {
 	 * @param animate
 	 * 		whether or not the transition should be animated
 	 */
-	public void setInactive(boolean animate) {
+	public void setInactive(final boolean animate) {
 		if (state == State.ACTIVE) {
 			int animateBooleanAsInt = animate ? 1 : 0;
 
@@ -377,7 +377,7 @@ public class Dot extends RelativeLayout {
 	 * @param animate
 	 * 		whether or not the transition should be animated
 	 */
-	public void setActive(boolean animate) {
+	public void setActive(final boolean animate) {
 		if (state == State.INACTIVE) {
 			int animateBooleanAsInt = animate ? 1 : 0;
 
@@ -492,7 +492,7 @@ public class Dot extends RelativeLayout {
 	 * @param newSizePx
 	 * 		the desired size of {@code dot}, measured in pixels
 	 */
-	private void changeSize(int newSizePx) {
+	private void changeSize(final int newSizePx) {
 		shape.setIntrinsicWidth(newSizePx);
 		shape.setIntrinsicHeight(newSizePx);
 		drawableHolder.setImageDrawable(null); // Forces ImageView to update drawable

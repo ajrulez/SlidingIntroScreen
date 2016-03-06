@@ -102,9 +102,12 @@ public abstract class IntroActivity extends AppCompatActivity
 	 * method call to ensure the theme applies correctly.
 	 *
 	 * @param savedInstanceState
+	 * 		If the activity is being re-initialized after previously being shut down then this
+	 * 		Bundle contains the data it most recently supplied in onSaveInstanceState. Note:
+	 * 		Otherwise it is null.
 	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		setTheme(R.style.NoActionBar);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intro);
@@ -181,7 +184,7 @@ public abstract class IntroActivity extends AppCompatActivity
 	 * @param page
 	 * 		the {@code Page} to add
 	 */
-	protected void addPage(Page page) {
+	protected void addPage(final Page page) {
 		pages.add(page);
 	}
 
@@ -193,7 +196,7 @@ public abstract class IntroActivity extends AppCompatActivity
 	 * @param page
 	 * 		the {@code Page} to add
 	 */
-	protected void addPage(int index, Page page) {
+	protected void addPage(final int index, final Page page) {
 		pages.add(index, page);
 	}
 
@@ -203,20 +206,21 @@ public abstract class IntroActivity extends AppCompatActivity
 	 * @param page
 	 * 		the {@code Page} to remove
 	 */
-	protected void removePage(Page page) {
+	protected void removePage(final Page page) {
 		pages.remove(page);
 	}
 
 	/**
 	 * Removes the page at the specified index.
 	 *
-	 * @param index the index of the {@code Page} to remove
+	 * @param index
+	 * 		the index of the {@code Page} to remove
 	 */
-	protected void removePage(int index) {
+	protected void removePage(final int index) {
 		pages.remove(index);
 	}
 
-	protected void setTransformer(ViewPager.PageTransformer transformer) {
+	protected void setTransformer(final ViewPager.PageTransformer transformer) {
 		this.transformer = transformer;
 		viewPager.setPageTransformer(false, transformer);
 	}
@@ -243,21 +247,22 @@ public abstract class IntroActivity extends AppCompatActivity
 	 * {@inheritDoc}Updates {@code pageIndicator} and updates the buttons if necessary.
 	 */
 	@Override
-	public void onPageSelected(int position) {
+	public void onPageSelected(final int position) {
 		pageIndicator.setActiveItem(position, true);
 		updateButtonAppearance();
 	}
 
 	@Override
-	public void onPageScrollStateChanged(int state) {
-		// Forced to implement this method with onPageSelected
+	public void onPageScrollStateChanged(final int state) {
+		// Forced to implement this method with onPageSelected(int)
 	}
 
 	/**
 	 * {@inheritDoc}Updates {@code pageIndicator} and updates the buttons if necessary.
 	 */
 	@Override
-	public void onItemAdded(ArrayListWithCallbacks list, Object itemAdded, int index) {
+	public void onItemAdded(final ArrayListWithCallbacks list, final Object itemAdded,
+			final int index) {
 		pageIndicator.setNumberOfItems(list.size());
 		updateButtonAppearance();
 	}
@@ -266,7 +271,8 @@ public abstract class IntroActivity extends AppCompatActivity
 	 * {@inheritDoc}Updates {@code pageIndicator} and updates the buttons if necessary.
 	 */
 	@Override
-	public void onItemRemoved(ArrayListWithCallbacks list, Object itemRemoved, int index) {
+	public void onItemRemoved(final ArrayListWithCallbacks list, final Object itemRemoved,
+			final int index) {
 		pageIndicator.setNumberOfItems(list.size());
 		updateButtonAppearance();
 	}
@@ -275,13 +281,13 @@ public abstract class IntroActivity extends AppCompatActivity
 	 * {@inheritDoc}Updates {@code pageIndicator} and updates the buttons if necessary.
 	 */
 	@Override
-	public void onListCleared(ArrayListWithCallbacks list) {
+	public void onListCleared(final ArrayListWithCallbacks list) {
 		pageIndicator.setNumberOfItems(0);
 		updateButtonAppearance();
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(final View v) {
 		if (v == nextButton) {
 			int nextPageIndex = viewPager.getCurrentItem() + 1;
 
@@ -300,7 +306,7 @@ public abstract class IntroActivity extends AppCompatActivity
 	}
 
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
+	protected void onSaveInstanceState(final Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt(STATE_KEY_CURRENT_PAGE_INDEX, viewPager.getCurrentItem());
 	}

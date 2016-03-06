@@ -46,7 +46,7 @@ public class PageAdapter extends FragmentPagerAdapter
 	 * @param pages
 	 * 		the {@code Page} elements to adapt
 	 */
-	public PageAdapter(FragmentManager fm, ArrayListWithCallbacks<Page> pages) {
+	public PageAdapter(final FragmentManager fm, final ArrayListWithCallbacks<Page> pages) {
 		super(fm);
 
 		if (pages == null) {
@@ -68,7 +68,7 @@ public class PageAdapter extends FragmentPagerAdapter
 	}
 
 	@Override
-	public Fragment getItem(int position) {
+	public Fragment getItem(final int position) {
 		return pages.get(position);
 	}
 
@@ -78,17 +78,19 @@ public class PageAdapter extends FragmentPagerAdapter
 	}
 
 	@Override
-	public void onItemAdded(ArrayListWithCallbacks list, Object itemAdded, int index) {
+	public void onItemAdded(final ArrayListWithCallbacks list, final Object itemAdded,
+			final int index) {
 		notifyDataSetChanged();
 	}
 
 	@Override
-	public void onItemRemoved(ArrayListWithCallbacks list, Object itemRemoved, int index) {
+	public void onItemRemoved(final ArrayListWithCallbacks list, final Object itemRemoved,
+			final int index) {
 		notifyDataSetChanged();
 	}
 
 	@Override
-	public void onListCleared(ArrayListWithCallbacks list) {
+	public void onListCleared(final ArrayListWithCallbacks list) {
 		notifyDataSetChanged();
 	}
 }

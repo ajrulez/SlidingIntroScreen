@@ -145,7 +145,7 @@ public class ParallaxPage extends Page {
 	 * @param text
 	 * 		the text to display
 	 */
-	public void setText(CharSequence text) {
+	public void setText(final CharSequence text) {
 		this.text = text;
 		notifyTextChanged();
 	}
