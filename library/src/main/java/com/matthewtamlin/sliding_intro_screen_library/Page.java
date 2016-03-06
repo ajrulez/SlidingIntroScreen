@@ -25,7 +25,7 @@ import android.support.v4.app.Fragment;
  * to be transitioned as the pages are scrolled. Subclass this class to define the appearance and
  * behaviour of your pages.
  */
-public abstract class Page extends Fragment {
+public class Page extends Fragment {
 	/**
 	 * The color this page would prefer to have drawn behind it when displayed. This is distinct
 	 * from the background color of this {@code Fragment}.
