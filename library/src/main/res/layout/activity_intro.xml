@@ -2,12 +2,12 @@
 <RelativeLayout
 	android:id="@+id/intro_activity_root"
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@android:color/darker_gray"
-	android:fitsSystemWindows="false"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	android:fitsSystemWindows="false">
 
 	<android.support.v4.view.ViewPager
 		android:id="@+id/intro_activity_viewPager"
@@ -18,7 +18,7 @@
 	</android.support.v4.view.ViewPager>
 
 	<Button
-		android:id="@+id/intro_activity_skipButton"
+		android:id="@+id/intro_activity_leftButton"
 		style="?android:actionButtonStyle"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -35,20 +35,20 @@
 		android:textColor="@android:color/white"
 		android:textSize="16sp"/>
 
-	<com.matthewtamlin.sliding_intro_screen_library.SelectionIndicator
+	<com.matthewtamlin.sliding_intro_screen_library.PageIndicator
 		android:id="@+id/intro_activity_pageIndicator"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-		android:layout_alignTop="@id/intro_activity_skipButton"
+		android:layout_alignTop="@id/intro_activity_leftButton"
 		android:layout_centerHorizontal="true"/>
 
 	<Button
-		android:id="@+id/intro_activity_nextButton"
+		android:id="@+id/intro_activity_rightButton"
 		style="?android:actionButtonStyle"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignBaseline="@id/intro_activity_skipButton"
+		android:layout_alignBaseline="@id/intro_activity_leftButton"
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"
@@ -64,14 +64,15 @@
 		android:textSize="16sp"/>
 
 	<Button
-		android:id="@+id/intro_activity_doneButton"
+		android:id="@+id/intro_activity_finishButton"
 		style="?android:actionButtonStyle"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignBaseline="@id/intro_activity_skipButton"
+		android:layout_alignBaseline="@id/intro_activity_leftButton"
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"
+		android:enabled="false"
 		android:paddingBottom="16dp"
 		android:paddingEnd="40dp"
 		android:paddingLeft="40dp"
@@ -80,11 +81,10 @@
 		android:paddingTop="16dp"
 		android:text="@string/intro_activity_doneButtonText"
 		android:textColor="@android:color/white"
-		android:visibility="invisible"
-		android:enabled="false"
-		android:textSize="16sp"/>
+		android:textSize="16sp"
+		android:visibility="invisible"/>
 
 	<View
 		style="@style/HorizontalLine"
-		android:layout_above="@id/intro_activity_skipButton"/>
+		android:layout_above="@id/intro_activity_leftButton"/>
 </RelativeLayout>
