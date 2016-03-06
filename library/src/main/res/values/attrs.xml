@@ -1,5 +1,5 @@
 <resources>
-	<!-->Attributes for PageIndicator view<-->
+	<!-->Attributes for SelectionIndicator view<-->
 	<declare-styleable name="SelectionIndicator">
 		<!-->The total number of items represented by this widget. This attribute defaults to 1.<-->
 		<attr name="numberOfItems" format="integer"/>
@@ -45,5 +45,11 @@
 
 		<!-->Whether this dot should be active when created. This attribute defaults to false.<-->
 		<attr name="initiallyActive" format="boolean"/>
+	</declare-styleable>
+
+	<!-->Attributes for PageIndicator view<-->
+	<declare-styleable name="PageIndicator">
+		<!-->Whether or not the dots of this indicator should animate when changing between active and inactive.<-->
+		<attr name="animationsEnabled" format="boolean"/>
 	</declare-styleable>
 </resources>
